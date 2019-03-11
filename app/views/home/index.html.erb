@@ -1,1 +1,6 @@
-<h1>Hello</h1>
+
+<% @item.each do |f| %>
+<%= f.title %>
+<%= f.price %>
+<%= f.img_url %>
+<% end %>
