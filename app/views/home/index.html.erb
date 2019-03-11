@@ -1,6 +1,6 @@
 
 <% @item.each do |f| %>
-<%= f.title %>
+<%= link_to f.title, home_path(f.id)  %>
 <%= f.price %>
-<%= f.img_url %>
+<img src="<%= f.image_url %>">
 <% end %>
