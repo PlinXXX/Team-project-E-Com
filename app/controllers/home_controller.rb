@@ -11,4 +11,6 @@ class HomeController < ApplicationController
     @item = Item.find(@id)
 
   end
+
 end
+
