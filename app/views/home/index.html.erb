@@ -1,6 +1,5 @@
-
-<% @item.each do |f| %>
-<%= f.title %>
-<%= f.price %>
-<%= f.img_url %>
+<% @item.each do |item| %>
+	<%= item.title %><br>
+	<%= item.price %><br>
+	<%= image_tag item.image_url, width: "300px", heigth: "200px" %><br>
 <% end %>
