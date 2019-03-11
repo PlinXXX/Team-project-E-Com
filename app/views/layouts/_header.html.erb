@@ -1,0 +1,110 @@
+<header class="header_area">
+		<div class="top_menu row m0">
+			<div class="container-fluid">
+				<div class="float-right">
+					<ul class="right_side">
+							<% unless user_signed_in? %>
+						<li>
+								<a href="/users/sign_in">Log in</a>
+						</li>
+						<li>
+
+								<a href="/users/sign_up">Sign up</a>
+						</li>
+							<% else %>
+
+						<li>
+
+								<a href="/users/sign_out" class="m-link" data-method="DELETE">Log out</a>
+						</li>
+							<% end %>
+						<li>
+							<a href="#">
+								Mon compte
+							</a>
+						</li>
+						<li>
+							<a href="contact.html">
+								Contactez nous
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a class="navbar-brand logo_h" href="index.html">
+						<img src="img/logo.png" alt="">
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					 aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+						<div class="row w-100">
+							<div class="col-lg-7 pr-0">
+								<ul class="nav navbar-nav center_nav pull-right">
+									<li class="nav-item active">
+										<a class="nav-link" href="/">Acceuil</a>
+									</li>
+									<li class="nav-item submenu dropdown">
+										<a href="category.html" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Magasin</a>
+									</li>
+									<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nos pages</a>
+										<% unless user_signed_in? %>
+										<ul class="dropdown-menu">
+											<li class="nav-item">
+												<a class="nav-link" href="login.html">Connexion</a>
+												<li class="nav-item">
+													<a class="nav-link" href="tracking.html">Inscription</a>
+											
+										</ul>
+										<% end %>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="contact.html">Nos Contacts</a>
+									</li>
+								</ul>
+							</div>
+
+							<div class="col-lg-5">
+								<ul class="nav navbar-nav navbar-right right_nav pull-right">
+
+									<li class="nav-item">
+										<a href="#" class="icons">
+											<i class="fa fa-user" aria-hidden="true"></i> <!-- Si le client est connecté alors mettre son nom  -->
+										</a>
+									</li>
+
+									<hr>
+
+									<li class="nav-item">
+										<a href="#" class="icons">
+											<i class="fa fa-heart-o" aria-hidden="true"></i> <!-- Autre fonctionnalité -->
+										</a> 
+									</li>
+
+									<hr>
+
+									<li class="nav-item">
+										<a href="#" class="icons">
+											<i class="lnr lnr lnr-cart"></i> <!-- ne pas afficher que si l'utilisateur est connecté -->
+										</a>
+									</li>
+
+									<hr>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
