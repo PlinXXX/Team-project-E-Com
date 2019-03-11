@@ -1,5 +1,16 @@
 class HomeController < ApplicationController
-	def index
+  def index
+
+  	@item = Item.all
 		
-	end
+  end
+
+  def show
+
+    @id = params[:id]
+    @item = Item.find(@id)
+
+  end
+
 end
+
