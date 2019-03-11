@@ -1,6 +1,7 @@
 
-<% @item.each do |f| %>
-<%= link_to f.title, home_path(f.id)  %>
-<%= f.price %>
-<img src="<%= f.image_url %>">
+
+<% @items.each do |item| %>
+    <%= image_tag item.image_url, width: "300px", heigth: "200px" %><br>
+	<%= link_to item.title, home_path(item.id) %><br>
+	<%= item.price %><br>
 <% end %>
