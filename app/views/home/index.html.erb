@@ -1,5 +1,5 @@
-<% @item.each do |item| %>
+<% @items.each do |item| %>
+	<%= image_tag item.image_url, width: "300px", heigth: "200px" %><br>
 	<%= item.title %><br>
 	<%= item.price %><br>
-	<%= image_tag item.image_url, width: "300px", heigth: "200px" %><br>
 <% end %>
