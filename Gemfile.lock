@@ -228,5 +228,5 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.5.3
+   ruby 2.6.1
 
