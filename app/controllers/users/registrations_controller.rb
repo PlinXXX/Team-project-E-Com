@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SCOPE::RegistrationsController < Devise::RegistrationsController
+class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -11,9 +11,18 @@ class SCOPE::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    Cart.create(user_id: @user.id)
-    super
+    puts "="*60
+    @user = User.new(user_params)
 
+    if @user.save
+      myCart = Cart.create(user_id: @user.id)
+      @user.cart_id = myCart.id
+      @user.save
+      redirect_to new_user_session_path
+    else
+      render :new
+    end
+    puts "="*60
   end
 
   # GET /resource/edit
@@ -61,4 +70,10 @@ class SCOPE::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private 
+
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation)
+  end
 end
