@@ -16,9 +16,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if @user.save
       myCart = Cart.create(user_id: @user.id)
+
       @user.cart_id = myCart.id
       @user.save
-      redirect_to new_user_session_path
+
+      session[:user_id] = @user.id
+      redirect_to '/'
     else
       render :new
     end
