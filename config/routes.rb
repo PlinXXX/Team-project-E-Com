@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :home
+
+	devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
   
     get '/presentation/team'
 	root 'home#index'

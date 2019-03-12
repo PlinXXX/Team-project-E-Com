@@ -12,5 +12,23 @@ title = ["Le Maine Coon", "Le Sacré de Birmanie", "Le Bengal", "Le Persan", "Le
 price = [1200, 1500, 3200, 5200,1400,5200, 6300];
 
 for i in 0...price.length
-	Item.create(title: "#{title[i]}", description: "#{list_of_description[i]}", price: "#{price[i]}", image_url: "#{list_of_url[i]}")
+	myItem = Item.create(
+		title: "#{title[i]}", 
+		description: "#{list_of_description[i]}", 
+		price: "#{price[i]}", 
+		image_url: "#{list_of_url[i]}")
+
+	user = User.create(
+		email: "guest#{i}@yopmail.com",
+		password: "#{i}"*6,
+		password_confirmation: "#{i}"*6)
+
+	myCart = Cart.create(user_id: user.id)
+
+	user.cart_id = myCart.id
+	user.save
+
+	ItemToCart.create(item_id: myItem.id, cart_id: myCart.id)
 end
+
+
