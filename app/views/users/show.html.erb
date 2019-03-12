@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<%= @user.first_name %>
+<%= @user.last_name %>
+<%= @user.email %>
+
+<% @user.orders.each do |order| %>
+	<%= order.description %>
+<% end %>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', :back %>

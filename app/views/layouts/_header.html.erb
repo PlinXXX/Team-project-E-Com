@@ -17,9 +17,8 @@
 
 								<a href="/users/sign_out" class="m-link" data-method="DELETE">Log out</a>
 						</li>
-							<% end %>
 						<li>
-							<a href="/users/edit">
+							<a href="/users/<%= current_user.id %>">
 								Mon compte
 							</a>
 						</li>
@@ -28,6 +27,7 @@
 								Contactez nous
 							</a>
 						</li>
+							<% end %>
 					</ul>
 				</div>
 			</div>

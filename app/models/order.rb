@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
-	belongs_to :carts
-	has_many :items, through: :carts
+	belongs_to :user
+
+	validates :description, presence: true
 end

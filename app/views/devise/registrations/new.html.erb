@@ -43,6 +43,16 @@
 
   <div class="input-group">
     <span class="input-group-addon"><i class="fa fa-user"></i></span>
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder:" First name", class: "form-control"%>
+  </div><br>
+
+  <div class="input-group">
+    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder:" Last name", class: "form-control"%>
+  </div><br>
+
+  <div class="input-group">
+    <span class="input-group-addon"><i class="fa fa-user"></i></span>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"email address", class: "form-control"%>
   </div><br>
 

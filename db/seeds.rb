@@ -19,6 +19,8 @@ for i in 0...price.length
 		image_url: "#{list_of_url[i]}")
 
 	user = User.create(
+		first_name: "guest#{i}",
+		last_name: "invité#{i}",
 		email: "guest#{i}@yopmail.com",
 		password: "#{i}"*6,
 		password_confirmation: "#{i}"*6)
