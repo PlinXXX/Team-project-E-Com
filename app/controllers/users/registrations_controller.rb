@@ -21,6 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @user.save
 
       session[:user_id] = @user.id
+      @user.avatar.attach(params.permit[:avatar])
       redirect_to '/'
     else
       render :new
@@ -78,5 +79,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+  end
+
+  def avatar_params
+    
   end
 end

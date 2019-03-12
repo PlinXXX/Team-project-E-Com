@@ -38,8 +38,8 @@
 								<a href="#">
 									<i class="lnr lnr-heart"></i>
 								</a>
-								<a href="#">
-									<i class="lnr lnr-cart"></i>
+								<a href="/users/<%= current_user.id %>/items/<%= item.id %>/item_to_carts" data-method="POST">
+									<i class="lnr lnr-cart">Add</i>
 								</a>
 							</div>
 							<% else%>
@@ -49,11 +49,13 @@
 									<i class="lnr lnr-heart"></i>
 								</a>
 							</div>
-							
 							<% end %>
+							
 						</div>
 					</div>
-					<a href="/items/<%= item.id %>">
+					<% if user_signed_in? %>
+					<a href="/users/<%= current_user.id %>/items/<%= item.id %>">
+					<% end %>
 						<h4><%= item.title %><br></h4>
 					</a>
 					<h5>Prix : $<%= item.price %><br></h5>

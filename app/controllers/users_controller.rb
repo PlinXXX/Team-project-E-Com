@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-
+  include UsersHelper
+  before_action :authenticate_user
   # GET /users/1
   # GET /users/1.json
   def show
