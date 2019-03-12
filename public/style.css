@@ -413,7 +413,7 @@ a {
 /* Home Banner Area css
 ============================================================================================ */
 .home_banner_area {
-  background: url(mi.jpg) no-repeat center bottom;
+  background: url(/mi.jpg) no-repeat center bottom;
   position: relative;
   z-index: 1;
   min-height: 900px; }
@@ -474,7 +474,7 @@ a {
     min-height: 780px;
     z-index: 1; }
     .blog_banner .banner_inner .overlay {
-      background: url(../img/banner/banner-2.jpg) no-repeat scroll center center;
+      background: url(/mi.jpg) no-repeat scroll center center;
       opacity: .5;
       height: 125%;
       position: absolute;
@@ -513,7 +513,7 @@ a {
     overflow: hidden;
     width: 100%;
     min-height: 395px;
-    background: url(../img/breadcrumb/checkout-bg.jpg) no-repeat center bottom;
+    background: url(mi.jpg) no-repeat center bottom;
     background-size: contain;
     z-index: 1; }
     .banner_area .banner_inner .overlay {
@@ -4362,7 +4362,6 @@ h6 {
     color: #1641ff; }
   .f_social_wd .f_social a:last-child {
     margin-right: 0px; }
-
-/*---------------------------------------------------- */
+  /*---------------------------------------------------- */
 
 /*# sourceMappingURL=style.css.map */
