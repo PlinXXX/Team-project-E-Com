@@ -3,6 +3,7 @@
 	<%= item.description %><br>
 	<%= item.price %><br>
 	<%= image_tag item.image_url, width: "300px", heigth: "250px"%><br><br>
+	<%= button_to 'remove', user_item_item_to_cart_path(@user.id, item.id, ItemToCart.where(item_id: item.id, cart_id: @user.cart.id).first.id), method: :delete, data: {confirm: "Are you sure"} %>
 <% end %>
 
 <%= render 'order/new', user: current_user%>
