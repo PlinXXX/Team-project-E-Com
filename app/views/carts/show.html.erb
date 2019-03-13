@@ -4,3 +4,5 @@
 	<%= item.price %><br>
 	<%= image_tag item.image_url, width: "300px", heigth: "250px"%><br><br>
 <% end %>
+
+<%= render 'order/new', user: current_user%>

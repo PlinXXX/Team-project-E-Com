@@ -64,7 +64,8 @@ ActiveRecord::Schema.define(version: 2019_03_12_161102) do
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
     t.string "description"
-    t.boolean "status"
+    t.string "stripe_customer_id"
+    t.boolean "status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"

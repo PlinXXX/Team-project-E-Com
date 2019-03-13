@@ -35,9 +35,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    puts "="*60
+    @user.avatar.attach(params[:avatar])
+    super
+    puts "="*60
+  end
 
   # DELETE /resource
   # def destroy

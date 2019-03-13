@@ -56,9 +56,9 @@
 									<li class="nav-item submenu dropdown">
 										<a href="category.html" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Magasin</a>
 									</li>
+										<% unless user_signed_in? %>
 									<li class="nav-item submenu dropdown">
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nos pages</a>
-										<% unless user_signed_in? %>
 										<ul class="dropdown-menu">
 											<li class="nav-item">
 												<a class="nav-link" href="/users/sign_in">Connexion</a>
@@ -66,8 +66,8 @@
 													<a class="nav-link" href="/users/sign_up">Inscription</a>
 											
 										</ul>
-										<% end %>
 									</li>
+										<% end %>
 									<li class="nav-item">
 										<a class="nav-link" href="/home/contact">Nos Contacts</a>
 									</li>
@@ -80,7 +80,7 @@
 									<li class="nav-item">
 										<%if current_user && current_user.avatar.attached?%>
 										<a href="">
-										  <%= image_tag current_user.avatar, alt: 'avatar', width: "70px", heigth: "60"%>
+										  <%= image_tag current_user.avatar, alt: 'avatar', width: "70px", height: "60px" %>
 										</a>  
 										<%else%>
 										<a href="#" class="icons">
