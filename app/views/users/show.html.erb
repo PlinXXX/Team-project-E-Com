@@ -18,11 +18,5 @@
 	<%= order.description %>
 <% end %>
 
-<h3>Changer d'avatar ?</h3>
-<%= form_tag user_avatar_index_path(@user.id), multipart: true do %>
-  <%= file_field_tag :avatar %>
-  <%= submit_tag "mettre à jour" %>
-<% end %>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Edit', edit_user_registration_path(@user) %> |
 <%= link_to 'Back', :back %>

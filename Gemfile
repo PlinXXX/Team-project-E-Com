@@ -3,9 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.3'
 
-gem 'dotenv-rails'
+gem 'rails_admin', '~> 1.3'
 
 gem 'stripe'
+
+# gem "administrate"
 
 gem 'table_print'
 
@@ -48,6 +50,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'letter_opener'
+  gem 'dotenv-rails'
+  gem 'faker'
 end
 
 group :development do

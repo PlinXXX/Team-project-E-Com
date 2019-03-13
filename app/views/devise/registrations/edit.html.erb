@@ -4,6 +4,15 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, placeHolder: " First name" %>
+  </div><br>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, placeHolder: " Last name" %>
+  </div><br>
+  
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
@@ -34,6 +43,12 @@
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
+<% end %>
+
+<h3>Changer d'avatar ?</h3>
+<%= form_tag user_avatar_index_path(@user.id), multipart: true do %>
+  <%= file_field_tag :avatar %>
+  <%= submit_tag "mettre à jour" %>
 <% end %>
 
 <h3>Cancel my account</h3>
