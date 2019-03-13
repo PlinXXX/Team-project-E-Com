@@ -76,15 +76,15 @@
 
 							<div class="col-lg-5">
 								<ul class="nav navbar-nav navbar-right right_nav pull-right">
-
+									<% if user_signed_in? %>
 									<li class="nav-item">
-										<%if current_user && current_user.avatar.attached?%>
-										<a href="">
-										  <%= image_tag current_user.avatar, alt: 'avatar', width: "70px", height: "60px" %>
+										<%if current_user.avatar.attached?%>
+										<a href="/users/<%= current_user.id %>/edit">
+										  	<%= image_tag current_user.avatar, alt: 'avatar', width: "auto", height: "60px", style: "border-radius: 50%; margin: 10px;"%>
 										</a>  
-										<%else%>
-										<a href="#" class="icons">
-											<i class="fa fa-user" aria-hidden="true"></i> <!-- Si le client est connecté alors mettre son nom  -->
+										<% else %>
+										<a href="/users/<%= current_user.id %>/edit">
+											<i class="fa fa-user" aria-hidden="true"></i>
 										</a>
 										<%end%>
 									</li>
@@ -98,7 +98,6 @@
 									</li>
 
 									<hr>
-									<% if user_signed_in? %>
 									<li class="nav-item">
 										<a href="/users/<%= current_user.id %>/carts/<%= current_user.cart.id %>" class="icons">
 											<i class="lnr lnr lnr-cart"></i> <!-- ne pas afficher que si l'utilisateur est connecté -->

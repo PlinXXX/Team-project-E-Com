@@ -12,6 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     puts "="*60
+    user_params = params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
     @user = User.new(user_params)
 
     if @user.save
@@ -35,12 +36,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  def update
-    puts "="*60
-    @user.avatar.attach(params[:avatar])
-    super
-    puts "="*60
-  end
+  # def update
+  #   super
+  # end
 
   # DELETE /resource
   # def destroy
@@ -77,14 +75,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-
-  private 
-
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
-  end
-
-  def avatar_params
-    
-  end
 end

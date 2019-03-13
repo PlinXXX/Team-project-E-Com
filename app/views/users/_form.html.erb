@@ -1,26 +1,81 @@
-<%= form_with(model: user, local: true) do |f| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-4 pb-5">
+            <!-- Account Sidebar-->
+            <div class="author-card pb-3">
+                <div class="author-card-cover" style="background-image: url(https://demo.createx.studio/createx-html/img/widgets/author/cover.jpg);"></div>
+                <div class="author-card-profile">
+                    <div class="author-card-avatar">
+                      <% if @user.avatar.attached? %>
+                        <%= image_tag @user.avatar %>
+                      <% else %>
+                        <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Daniel Adams">
+                      <% end %>
+                      <%= form_tag user_avatar_index_path(@user.id), multipart: true do %>
+                          <%= file_field_tag :avatar, class: "form-control" %>
+                          <%= submit_tag "mettre à jour",class: "btn btn-primary" %>
+                      <% end %>
+                    </div>
+                    <div class="author-card-details">
+                        <h5 class="author-card-name text-lg"><%= @user.first_name %></h5><span class="author-card-position">Joined <%= @user.created_at %></span>
+                    </div>
+                </div>
+            </div>
+            <div class="wizard">
+                <nav class="list-group list-group-flush">
+                    <a class="list-group-item " href="/users/<%= @user.id %>">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="d-inline-block font-weight-medium text-uppercase"><i class="fa fa-shopping-bag mr-1 text-muted"> Vos commandes passés</i></div>
+                            </div><span class="badge badge-secondary"><%= @user.orders.length %></span>
+                        </div>
+                    </a>
+                    <a class="list-group-item active" href="/users/edit"><i class="fa fa-user text-muted"> Editer le profil</i></a>
+                    <a class="list-group-item" href="/users/sign_out" data-method="delete"><i class="fa fa-user text-muted"></i> Déconnexion</a>
+                </nav>
+            </div>
+        </div>
+        <form class="row">
+          <%= form_with(model: user, local: true) do |f| %>
+            <% if user.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+                <ul>
+                <% user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="first_name">First name</label>
+                <%= f.text_field :first_name, placeHolder: " First name", class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="last_name">Last name</label>
+                <%= f.text_field :last_name, placeHolder: " Last name", class: "form-control" %>
+              </div>
+            </div>
+
+            <div class="col-12">
+                <hr class="mt-2 mb-3">
+                  <div class="d-flex flex-wrap justify-content-between align-items-center">
+                    <div class="custom-control custom-checkbox d-block">
+                      <input class="custom-control-input" type="checkbox" id="subscribe_me" checked="">
+                        <label class="custom-control-label" for="subscribe_me">S'abonner au Newsletter</label>
+                    </div>  
+                <%= f.submit "Save Changes", class: "btn btn-primary" %>
+              </div>
+            </div>
+
+            </div>
+          <% end %>
+        </form>
+
     </div>
-  <% end %>
-  <div>
-    <%= f.text_field :first_name, placeHolder: " First name" %>
-  </div><br>
-  <div>
-    <%= f.text_field :last_name, placeHolder: " Last name" %>
-  </div><br>
-  <div>
-    <%= f.email_field :email, placeHolder: " Email" %>
-  </div><br>
-
-  <div class="actions">
-    <%= f.submit %>
   </div>
-<% end %>
+</div>

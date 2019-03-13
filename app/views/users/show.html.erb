@@ -1,22 +1,112 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Page Profil</h1>
-
-<p>Bienvenue sur la page d'ajout d'un avatar pour le User portant l'id : <%=@user.id%></p>
-<h3>Avatar actuel</h3>
-<%if @user.avatar.attached?%>
-  <%= image_tag @user.avatar, alt: 'avatar' %>
-<%else%>
-  <p>=== Il n'y a pas encore d'avatar lié à cet utilisateur ===</p>
-<%end%>
-
-<%= @user.first_name %>
-<%= @user.last_name %>
-<%= @user.email %>
-
-<% @user.orders.each do |order| %>
-	<%= order.description %>
+<% unless @user.orders.length == 0 %>
+	
 <% end %>
 
-<%= link_to 'Edit', edit_user_registration_path(@user) %> |
-<%= link_to 'Back', :back %>
+<div class="container mb-4 main-container profil_division">
+    <div class="row">
+        <div class="col-lg-4 pb-5">
+            <!-- Account Sidebar-->
+            <div class="author-card pb-3">
+                <div class="author-card-cover" style="background-image: url(https://demo.createx.studio/createx-html/img/widgets/author/cover.jpg);"></div>
+                <div class="author-card-profile">
+                    <div class="author-card-avatar">
+                    	<%if @user.avatar.attached?%>
+											  <%= image_tag @user.avatar, alt: 'avatar', id: 'avatar' %>
+											<%else%>
+					              <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Daniel Adams">
+											  <div>=== No avatar yet ===</div>
+											<%end%>
+                    </div>
+                    <div class="author-card-details">
+                        <h5 class="author-card-name text-lg"><%= @user.first_name %></h5><span class="author-card-position">Joined <%= @user.created_at %></span>
+                    </div>
+                </div>
+            </div>
+            <div class="wizard">
+                <nav class="list-group list-group-flush">
+                    <a class="list-group-item active" href="#">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><i class="fa fa-shopping-bag mr-1 text-muted active"></i>
+                                <div class="d-inline-block font-weight-medium text-uppercase">Vos commandes passés</div>
+                            </div><span class="badge badge-secondary"><%= @user.orders.length %></span>
+                        </div>
+                    </a>
+                    <a class="list-group-item" href="/users/edit"><i class="fa fa-user text-muted"> Editer le profil</i></a>
+                    <a class="list-group-item" href="/users/sign_out" data-method="delete"><i class="fa fa-user text-muted"> Déconnexion</i></a>
+                </nav>
+            </div>
+        </div>
+        <!-- Orders Table-->
+        <div class="col-lg-8 pb-5">
+            	
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>Numéro de vente</th>
+                            <th>Date d'achat</th>
+                            <th>Etat</th>
+                            <th>Total</th>	
+                        </tr>
+                    </thead>
+                    <tbody>
+                    	<%  
+                    		@total = 0
+                    		@user.orders.each do |order|
+                    			order.items.each do |item|	
+                    				@total += item.price
+                    			end
+                    		end
+                    	%>
+                    	<% @user.orders.each do |order| %>
+                    		<tr>
+                    			<td><a class="navi-link" href="#order-details" data-toggle="modal"><%= order.stripe_customer_id %></a></td>
+                    			<td><%= order.created_at %></td>
+                    			<td><span class="badge badge-danger m-0"><%= order.status %></span></td>
+                    			<td><span>$<%= @total %></span></td>
+                    		</tr>
+                    	<% end %>
+                        <!-- <tr>
+                            <td><a class="navi-link" href="#order-details" data-toggle="modal">78A643CD409</a></td>
+                            <td>August 08, 2017</td>
+                            <td><span class="badge badge-danger m-0">Canceled</span></td>
+                            <td><span>$760.50</span></td>
+                        </tr>
+                        <tr>
+                            <td><a class="navi-link" href="#order-details" data-toggle="modal">34VB5540K83</a></td>
+                            <td>July 21, 2017</td>
+                            <td><span class="badge badge-info m-0">In Progress</span></td>
+                            <td>$315.20</td>
+                        </tr>
+                        <tr>
+                            <td><a class="navi-link" href="#order-details" data-toggle="modal">112P45A90V2</a></td>
+                            <td>June 15, 2017</td>
+                            <td><span class="badge badge-warning m-0">Delayed</span></td>
+                            <td>$1,264.00</td>
+                        </tr>
+                        <tr>
+                            <td><a class="navi-link" href="#order-details" data-toggle="modal">28BA67U0981</a></td>
+                            <td>May 19, 2017</td>
+                            <td><span class="badge badge-success m-0">Delivered</span></td>
+                            <td>$198.35</td>
+                        </tr>
+                        <tr>
+                            <td><a class="navi-link" href="#order-details" data-toggle="modal">502TR872W2</a></td>
+                            <td>April 04, 2017</td>
+                            <td><span class="badge badge-success m-0">Delivered</span></td>
+                            <td>$2,133.90</td>
+                        </tr>
+                        <tr>
+                            <td><a class="navi-link" href="#order-details" data-toggle="modal">47H76G09F33</a></td>
+                            <td>March 30, 2017</td>
+                            <td><span class="badge badge-success m-0">Delivered</span></td>
+                            <td>$86.40</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

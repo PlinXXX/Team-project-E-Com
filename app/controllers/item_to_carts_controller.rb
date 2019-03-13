@@ -4,10 +4,12 @@ class ItemToCartsController < ApplicationController
 		@user = User.find(params[:user_id])
 		@item = Item.find(params[:item_id])
 
-		ItemToCart.create(item_id: @item.id, cart_id: @user.cart.id)
+		myItemInMyCart = ItemToCart.new(item_id: @item.id, cart_id: @user.cart.id)
 
 		respond_to do |format|
-			format.html{ redirect_to "/", notice: "Item added to cart" }
+			if myItemInMyCart.save
+				format.html{ redirect_to "/", notice: "Item added to cart" }
+			end
 		end
 	end
 

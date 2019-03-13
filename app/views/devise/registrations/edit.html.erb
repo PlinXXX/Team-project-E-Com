@@ -1,58 +1,93 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-4 pb-5">
+            <!-- Account Sidebar-->
+            <div class="author-card pb-3">
+                <div class="author-card-cover" style="background-image: url(https://demo.createx.studio/createx-html/img/widgets/author/cover.jpg);"></div>
+                <div class="author-card-profile">
+                    <div class="author-card-avatar">
+                      <% if @user.avatar.attached? %>
+                        <%= image_tag @user.avatar %>
+                      <% else %>
+                        <img src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="Daniel Adams">
+                      <% end %>
+                    </div>
+                    <div class="author-card-details">
+                        <h5 class="author-card-name text-lg"><%= @user.first_name %></h5><span class="author-card-position">Joined <%= @user.created_at %></span>
+                    </div>
+                </div>
+            </div>
+            <div class="wizard">
+                <nav class="list-group list-group-flush">
+                    <a class="list-group-item " href="/users/<%= @user.id %>">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="d-inline-block font-weight-medium text-uppercase"><i class="fa fa-shopping-bag mr-1 text-muted"> Vos commandes passés</i></div>
+                            </div><span class="badge badge-secondary"><%= @user.orders.length %></span>
+                        </div>
+                    </a>
+                    <a class="list-group-item active" href="/users/edit"><i class="fa fa-user text-muted"> Editer le profil</i></a>
+                    <a class="list-group-item" href="/users/sign_out" data-method="delete"><i class="fa fa-user text-muted"></i> Déconnexion</a>
+                </nav>
+            </div>
+        </div>
+        <!-- Profile Settings-->
+        <div class="col-lg-8 pb-5">
+            <form class="row">
+              <%= form_for(resource, as: resource_name, url: user_registration_path(resource_name), html: { method: :patch },class: "form-horizontal") do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-email">Adresse e-mail</label>
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control", id: "account-email" %>
+                    </div>
+                </div>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, placeHolder: " First name" %>
-  </div><br>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, placeHolder: " Last name" %>
-  </div><br>
-  
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+                    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                    <% end %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-pass">Current password</label>
+                        <%= f.password_field :current_password, autocomplete: "current-password",class: "form-control", id: "account-pass" %><i>(we need your current password to confirm your changes)</i>
+                        <% if @minimum_password_length %>
+                        <em><%= @minimum_password_length %> characters minimum</em>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-pass">New password</label>
+                        <%= f.password_field :password, autocomplete: "new-password",class: "form-control", id: "account-pass" %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="account-confirm-pass">Confirm your new password</label>
+                        <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control", id: "account-confirm-pass" %>
+                        <i>(leave blank if you don't want to change it)</i>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <hr class="mt-2 mb-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center">
+                        <div class="custom-control custom-checkbox d-block">
+                            <input class="custom-control-input" type="checkbox" id="subscribe_me" checked="">
+                            <label class="custom-control-label" for="subscribe_me">S'abonner au Newsletter</label>
+                        </div>
+                        <%= f.submit "Save Changes", class: "btn btn-primary" %>
+                        <%= link_to 'Back', :back, class: "btn btn-light" %>
+                    </div>
+                </div>
+                <% end %>
+            </form>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Changer d'avatar ?</h3>
-<%= form_tag user_avatar_index_path(@user.id), multipart: true do %>
-  <%= file_field_tag :avatar %>
-  <%= submit_tag "mettre à jour" %>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+        </div>
+    </div>
+            <p>Unhappy?</p> <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,class: "btn btn-danger" %>  
+</div>
