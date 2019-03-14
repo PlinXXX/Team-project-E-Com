@@ -14,9 +14,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    puts "="*60
     respond_to do |format|
       if @user.update(user_params)
-        @user.avatar.attach(params[:avatar])
+        @user.avatar.attach(params[:avatar]) if params[:avatar]
         format.html { redirect_to @user, notice: 'Users was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+    puts "="*60
   end
 
   private

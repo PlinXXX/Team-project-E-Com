@@ -11,32 +11,39 @@ list_of_url = ["https://static.wamiz.fr/images/upload/17127142_2244568545769182_
 title = ["Le Maine Coon", "Le Sacré de Birmanie", "Le Bengal", "Le Persan", "Le Chartreux", " Le British Shorthair", "Le Norvégien"];
 price = [1200, 1500, 3200, 5200,1400,5200, 6300];
 
-# for i in 0...price.length
-# 	myItem = Item.create(
-# 		title: "#{title[i]}", 
-# 		description: "#{list_of_description[i]}", 
-# 		price: "#{price[i]}", 
-# 		image_url: "#{list_of_url[i]}")
+	# admin = User.create(
+	# 	first_name: "admin",
+	# 	last_name: "me",
+	# 	email: "admin@yopmail.com",
+	# 	password: "01111998",
+	# 	password_confirmation: "01111998",
+	# 	is_admin: true
+	# )
 
-# 	user = User.create(
-# 		first_name: "guest#{i}",
-# 		last_name: "invité#{i}",
-# 		email: "guest#{i}@yopmail.com",
-# 		password: "#{i}"*6,
-# 		password_confirmation: "#{i}"*6)
+	# myCart = Cart.create(user_id: admin.id)
 
-# 	myCart = Cart.create(user_id: user.id)
+for i in 0...price.length
+	myItem = Item.create(
+		title: "#{title[i]}", 
+		description: "#{list_of_description[i]}", 
+		price: "#{price[i]}", 
+		image_url: "#{list_of_url[i]}")
 
-# 	user.cart_id = myCart.id
-# 	user.save
+	user = User.create(
+		first_name: "guest#{i}",
+		last_name: "invité#{i}",
+		email: "guest#{i}@yopmail.com",
+		password: "#{i}"*6,
+		password_confirmation: "#{i}"*6
+	)
 
-# 	ItemToCart.create(item_id: myItem.id, cart_id: myCart.id)
-# end
+	myCart = Cart.create(user_id: user.id)
 
-User.all.each do |user|
-	user.orders.each do |order|
-		order.destroy
-	end
+	ItemToCart.create(item_id: myItem.id, cart_id: myCart.id)
 end
 
-
+# User.all.each do |user|
+# 	user.orders.each do |order|
+# 		order.destroy
+# 	end
+# end

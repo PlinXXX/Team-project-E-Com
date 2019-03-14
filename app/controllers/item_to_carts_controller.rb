@@ -4,7 +4,7 @@ class ItemToCartsController < ApplicationController
 		@user = User.find(params[:user_id])
 		@item = Item.find(params[:item_id])
 
-		myItemInMyCart = ItemToCart.new(item_id: @item.id, cart_id: @user.cart.id)
+		myItemInMyCart = ItemToCart.new(item_id: @item.id, cart_id: @user.carts.last.id)
 
 		respond_to do |format|
 			if myItemInMyCart.save
@@ -17,7 +17,7 @@ class ItemToCartsController < ApplicationController
 		@user = User.find(params[:user_id])
 		@item = Item.find(params[:item_id])
 
-		@item_to_cart = ItemToCart.where(item_id: @item.id, cart_id: @user.id).first
+		@item_to_cart = ItemToCart.where(item_id: @item.id, cart_id: @user.carts.last.id).first
 		@item_to_cart.destroy
 		redirect_to user_cart_path(@user.id, @user.id)
 	end

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div class = "container">
+         
+    <h1> objet: Commande </h1>
+    <h2>Bonjour les admin,</h2>
+    <p>
+     Nous vous informons que l'utilisateur nommé <%= @user.first_name %> a fait une commande au seins de votre site
+      <br>
+     De même, cette email vous informe aussi le nombre de commade que <%= @user.first_name %>  à fait:
+     <div class ="listAchat">
+           <p>
+      Pour recapituler tous les commande, voici les listes
+
+       
+    </p>
+     </div>
+     <div class = "identite">
+       votre identite sur notre site <br>
+       first name : <%= @user.first_name %> <br>
+       last name : <%= @user.last_name %> <br>
+       email: <%= @user.email %> <br>
+     </div>
+     
+    </p>
+    </div>
+
+    <p> À très vite sur monsite.fr !
+  </body>
+</html>

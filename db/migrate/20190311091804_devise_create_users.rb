@@ -3,9 +3,10 @@
 class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :users do |t|
-      t.belongs_to :cart, index: true
       t.string :first_name
       t.string :last_name
+      t.boolean :is_admin, default: false
+
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  # namespace :admin do
+  #     resources :users
+  #     resources :carts
+  #     resources :items
+  #     resources :item_to_carts
+  #     resources :orders
+
+  #     root to: "users#index"
+  #   end
 	devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <div class = "container">
+    <h1> objet: remerciement</h1>
+    <h2>Bonjour <%= @user.first_name %>,</h2>
+    <p>
+     Nous vous comptons parmi nos plus fidèles clients,<br>
+      c'est pourquoi nous tenons à vous remercier de la confiance <br>
+       que vous accordez à notre travail et à notre savoir-faire. 
+      <br>
+     De même, nous souhaiterons vous remercier de cette collaboration  <br>
+      qui fut des plus positives et satisfaisantes <br><br> <br>
+     Ainsi, vous participez activement à notre développement nous vous en <br>
+     somme entièrement reconnaisants
+     <div class ="listAchat">
+           <p>
+      Pour recapituler votre achat, nous avons fournit ci dessous la list des <br>
+      commandes que vous avez fait au seins de notre site:
+
+       
+    </p>
+     </div>
+     <div class = "identite">
+       votre identite sur notre site <br> 
+       first name : <%= @user.first_name %><br>
+       last name : <%= @user.last_name %><br>
+       email: <%= @user.email %><br>
+     </div>
+
+     <div>
+       Vos achats : <br>
+      <% @order.cart.items.each do |item| %>
+         <%= item.title %> <br>
+      <% end %>
+     </div>
+     
+    </p>
+    </div>
+
+    <p> À très vite sur monsite.fr !
+  </body>
+</html>

@@ -99,7 +99,7 @@
 
 									<hr>
 									<li class="nav-item">
-										<a href="/users/<%= current_user.id %>/carts/<%= current_user.cart.id %>" class="icons">
+										<a href="/users/<%= current_user.id %>/carts/<%= current_user.carts.last.id %>" class="icons">
 											<i class="lnr lnr lnr-cart"></i> <!-- ne pas afficher que si l'utilisateur est connecté -->
 										</a>
 									</li>

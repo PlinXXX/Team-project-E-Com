@@ -35,7 +35,7 @@
                 </nav>
             </div>
         </div>
-        <form class="row">
+        <div class="row">
           <%= form_with(model: user, local: true) do |f| %>
             <% if user.errors.any? %>
               <div id="error_explanation">
@@ -74,7 +74,7 @@
 
             </div>
           <% end %>
-        </form>
+        </div>
 
     </div>
   </div>
