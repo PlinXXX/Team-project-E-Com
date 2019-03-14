@@ -28,22 +28,27 @@ for i in 0...price.length
 		description: "#{list_of_description[i]}", 
 		price: "#{price[i]}", 
 		image_url: "#{list_of_url[i]}")
-
-	user = User.create(
-		first_name: "guest#{i}",
-		last_name: "invité#{i}",
-		email: "guest#{i}@yopmail.com",
-		password: "#{i}"*6,
-		password_confirmation: "#{i}"*6
-	)
-
-	myCart = Cart.create(user_id: user.id)
-
-	ItemToCart.create(item_id: myItem.id, cart_id: myCart.id)
 end
+
+# 	user = User.create(
+# 		first_name: "guest#{i}",
+# 		last_name: "invité#{i}",
+# 		email: "guest#{i}@yopmail.com",
+# 		password: "#{i}"*6,
+# 		password_confirmation: "#{i}"*6
+# 	)
+
+# 	myCart = Cart.create(user_id: user.id)
+
+# 	ItemToCart.create(item_id: myItem.id, cart_id: myCart.id)
+# end
 
 # User.all.each do |user|
 # 	user.orders.each do |order|
 # 		order.destroy
 # 	end
+# end
+
+# User.all.each do |user|
+# 	Cart.create(user_id: user.id)
 # end

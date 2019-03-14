@@ -35,7 +35,7 @@ class OrderController < ApplicationController
 
 		  if @order.save
 		  	myCart = Cart.create(user_id: @user.id)
-
+		  	
 	      @user.carts << myCart
 	      @user.save
 	      

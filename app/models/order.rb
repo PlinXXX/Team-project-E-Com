@@ -7,6 +7,6 @@ class Order < ApplicationRecord
 
   def welcome_send
     UserMailer.welcome_email(self.user).deliver_now
-    AdminMailer.admin_email(User.find_by(email: 'team5@yopmail.com')).deliver_now
+    AdminMailer.admin_email(self.user).deliver_now
   end
 end

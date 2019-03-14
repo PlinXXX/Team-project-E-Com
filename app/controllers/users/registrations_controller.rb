@@ -17,13 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if @user.save
       myCart = Cart.create(user_id: @user.id)
-
-      @user.cart_id = myCart.id
-      @user.save
-
-      session[:user_id] = @user.id
-      @user.avatar.attach(params.permit[:avatar])
-      redirect_to '/'
+      redirect_to '/users/sign_in'
     else
       render :new
     end
