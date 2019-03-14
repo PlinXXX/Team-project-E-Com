@@ -10,8 +10,8 @@ module Admin
 
     def authenticate_admin
       # TODO Add authentication logic here.
-      unless current_user.is_admin
-        redirect_to root_path
+      unless true
+        redirect_to 'home#index'
       end
     end
 
