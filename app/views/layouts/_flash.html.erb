@@ -1,0 +1,13 @@
+<div class="container">	
+	<% if alert || notice %>
+    <div class="alert alert-danger alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Alert : </strong> <%= alert %>
+    </div>
+
+    <div class="alert alert-success alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Success : </strong> <%= notice %>
+    </div>
+  <% end %>
+</div>  

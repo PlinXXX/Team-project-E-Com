@@ -12,10 +12,14 @@ class User < ApplicationRecord
   # after_create :send_welcome_email
 
   def send_confirmation_email
-    UserMailer.confirmation_email(self).deliver_now
+    unless self.is_validate
+      UserMailer.confirmation_email(self).deliver_now
+    end
   end
 
   def send_welcome_email
-  	UserMailer.welcome_email(self).deliver_now
+  	unless self.is_validate
+      UserMailer.welcome_email(self).deliver_now
+    end
   end
 end

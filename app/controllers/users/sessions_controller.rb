@@ -4,15 +4,23 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
-  def new
-    @confirmation = Confirmation.where(status: false).last
-    super
-  end
-
-  # POST /resource/sign_in
-  # def create
+  # def new
   #   super
   # end
+
+  # POST /resource/sign_in
+  def create
+    @email = params.require(:user).permit(:email)
+    @user = User.where(@email).first
+    
+      if !@user
+        redirect_to '/users/sign_in', alert: "Unknown email, try another"
+      elsif !@user.is_validate
+        redirect_to '/confirmation/new'
+      else
+        super
+      end
+  end
 
   # DELETE /resource/sign_out
   # def destroy

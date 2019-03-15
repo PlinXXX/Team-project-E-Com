@@ -42,7 +42,7 @@
 									</div>
 								</td>
 								<td>
-									<h5>$<%= item.price %></h5>
+									<h5>Ar <%= item.price %></h5>
 								</td>
 								<!-- <td>
 									<div class="product_count">
@@ -74,24 +74,25 @@
 	</section>
 	<!--================End Cart Area =================-->
 
-	<a id="transaction_info" class="gray_btn">
-			Détails de la livraison
-	</a><br>
+	<center>
+		<a id="transaction_info" class="gray_btn">
+				About transaction 
+		</a><br>
 
-	<div class="collapse" id="info" style="text-align: center; display: inline-block;">
-		<% unless @amount == 0 %>
-			<center class="checkout_btn_inner">
-				<%= render 'order/new', user: current_user %>			
-			</center>
-		<% else %>
-			<div class="checkout_btn_inner">
-				<h5>Your cats will apears here</h5>
-			</div>
-		<% end %>
-		
-		<h5>Number of cat image : <%= @cart.items.length %></h5>
-	</div>
-
+		<div class="collapse" id="info" style="text-align: center; display: inline-block;">
+			<% unless @amount == 0 %>
+				<center class="checkout_btn_inner">
+					<%= render 'order/new', user: current_user %>			
+				</center>
+			<% else %>
+				<div class="checkout_btn_inner">
+					<h5>Your cats will apears here</h5>
+				</div>
+			<% end %>
+			
+			<h5>Number of kitty : <%= @cart.items.length %></h5>
+		</div>
+	</center>
 	<% @itemToCartS.each do |itemToCart| %>
 		<input type="hidden" name="itemToCart" id="<%= itemToCart.id %>">
 	<% end %>

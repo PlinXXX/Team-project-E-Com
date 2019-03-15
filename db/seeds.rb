@@ -11,16 +11,17 @@ list_of_url = ["https://static.wamiz.fr/images/upload/17127142_2244568545769182_
 title = ["Le Maine Coon", "Le Sacré de Birmanie", "Le Bengal", "Le Persan", "Le Chartreux", " Le British Shorthair", "Le Norvégien"];
 price = [1200, 1500, 3200, 5200,1400,5200, 6300];
 
-	# admin = User.create(
-	# 	first_name: "admin",
-	# 	last_name: "me",
-	# 	email: "admin@yopmail.com",
-	# 	password: "01111998",
-	# 	password_confirmation: "01111998",
-	# 	is_admin: true
-	# )
+	admin = User.create(
+		first_name: "admin",
+		last_name: "we",
+		email: "team5@yopmail.com",
+		password: "01111998",
+		password_confirmation: "01111998",
+		is_admin: true,
+		is_validate: true
+	)
 
-	# myCart = Cart.create(user_id: admin.id)
+	myCart = Cart.create(user_id: admin.id)
 
 for i in 0...price.length
 	myItem = Item.create(

@@ -1,7 +1,7 @@
 
 <!--================Home Banner Area =================-->
 
-<% if user_signed_in? %>
+<% if user_signed_in? && @user.is_validate %>
 	<input type="hidden" class="current_user_id" id="<%= current_user.id %>"></input>
 <% end %>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -96,7 +96,7 @@
 					<% end %>
 						<h4><%= item.title %><br></h4>
 					</a>
-					<h5>Prix : $<%= item.price %><br></h5>
+					<h5>Price : Ar<%= item.price %><br></h5>
 				</div>
 			</div>
 			<% end %>	

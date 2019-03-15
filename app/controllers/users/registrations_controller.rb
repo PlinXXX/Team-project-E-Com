@@ -13,12 +13,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     user_params = params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
     @user = User.new(user_params)
+    @user.is_validate = false
 
     @confirmation = Confirmation.create(
       email: @user.email,
-      confirmation_code: (6.times.map{ 200 + Random.rand(12) }).join(''),
-      status: false
+      confirmation_code: (6.times.map{ 200 + Random.rand(12) }).join('')
     )
+
+    session[:temp_email] = @user.email
 
     if @user.save
       myCart = Cart.create(user_id: @user.id)

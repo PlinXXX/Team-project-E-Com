@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 2019_03_14_054835) do
   create_table "confirmations", force: :cascade do |t|
     t.string "email"
     t.string "confirmation_code"
-    t.boolean "status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -85,6 +84,7 @@ ActiveRecord::Schema.define(version: 2019_03_14_054835) do
     t.string "first_name"
     t.string "last_name"
     t.boolean "is_admin", default: false
+    t.boolean "is_validate", default: true
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

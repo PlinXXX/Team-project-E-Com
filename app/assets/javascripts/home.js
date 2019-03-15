@@ -67,8 +67,8 @@ $(document).ready(function() {
 		let item_id = $Img.attr('id');
 		let nbr_of_cmd = 0
 
-			$Add.bind('click', () => {
-				
+			$Add.on('click', () => {
+
 				$.ajax({
 					url: `/users/${user_id}/items/${item_id}/item_to_carts`,
 					method: `POST`,

@@ -1,22 +1,31 @@
 class ConfirmationController < ApplicationController
-  def index
+  def new
+    @confirmation = Confirmation.new
   end
-
+  
   def create
-  end
+    @confirmations = Confirmation.where(email: session[:temp_email]).all
 
-  def update
-    @confirmation = Confirmation.where(status: false).last
-
-    unless account_not_validate
-      @confirmation.update(status: true)
+    respond_to do |format|
+      if code_is_valid
+        User.where(email: session[:temp_email]).first.update(is_validate: true)
+        session.delete(:temp_email)
+        format.html{
+          redirect_to '/users/sign_in', notice: "Your account as been validate"
+        }
+      else
+        format.html{
+          render :new, alert: "This code is invalid, please check your email"
+        }
+      end
     end
-
-    redirect_to '/users/sign_in'
   end
 
   private
-  def account_not_validate
-    params[:confirmation_code] != @confirmation.confirmation_code
+  def code_is_valid
+    @confirmations.each do |confirmation|
+      return true if confirmation.confirmation_code == params[:confirmation_code]
+    end
+    return false
   end
 end
