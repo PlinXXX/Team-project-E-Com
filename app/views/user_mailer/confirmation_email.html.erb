@@ -1,0 +1,31 @@
+ <div class = "container style" style="border:1px solid white; margin:5% 0% 2% 0%;box-shadow: 2px 3px 2px 4px grey;padding:3%;letter-spacing: 2px; font-size: 1em; font-family: monospace; background-color: black; color:white;margin: 6%; padding:5%;">
+    <!-- end of token -->
+    <div class="row text-center">
+      <div class="col-sm">
+        <div style = "padding-left: 5%;">
+           <h3 style = "color:red; text-shadow: 2px 1px red;text-align: center;margin-bottom: 3%;">SECURITY</h3>
+          <div style = "border-left: 2px solid white; padding-left: 2%;">
+            <label for="psw">
+              <span style = "text-shadow: 2% 1% 2% 2%;">Bonjour <%= @user.first_name %></span> <br>
+              Pour la securiter de votre compte, <br>
+              votre code de confirmation est:<br><br>
+
+
+              <div style = "color: red; font-size: 15px">
+                <%= @confirmation.confirmation_code %>
+              </div>
+             
+
+             <p> Suit le lien suivant et confirmer votre compte !
+
+             </div>
+           </div>
+
+         </div><br>
+         <div style ="margin:2%; text-align: center;">
+           <a href="localhost:3000/users/sign_in">Confirmer<span class="glyphicon glyphicon-ok"></a>
+         </div>
+
+       </div>
+     </div>
+

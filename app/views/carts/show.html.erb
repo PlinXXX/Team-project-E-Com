@@ -1,15 +1,97 @@
-<% @cart.items.each do |item| %>
-	<%= item.title %><br>
-	<%= item.description %><br>
-	<%= item.price %><br>
-	<%= image_tag item.image_url, width: "300px", heigth: "250px"%><br><br>
-	<%= button_to 'remove', user_item_item_to_cart_path(@user.id, item.id, ItemToCart.where(item_id: item.id, cart_id: @user.carts.last.id).first.id), method: :delete, data: {confirm: "Are you sure"} %>
-<% end %>
+<!--================Home Banner Area =================-->
+	<section class="banner_area">
+		<div class="banner_inner d-flex align-items-center">
+			<div class="container">
+				<div class="banner_content text-center">
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Home Banner Area =================-->
 
-<% unless @amount == 0 %>
-	<%= render 'order/new', user: current_user%>
-<% else %>
-	<div class="container" >
-		<h5>Get your first cat for free!</h5>
+	<!--================Cart Area =================-->
+	<section class="cart_area">
+		<div class="container">
+			<div class="cart_inner">
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Items</th>
+								<th scope="col">Description</th>
+								<th scope="col">Price</th>
+								<th scope="col">Quantity</th>	
+								<th scope="col">Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @items.each do |item| %>
+							<tr>
+								<td style="background-image: url('<%=item.image_url%>'); background-size: cover; color: white;">
+									<div class="media">
+										
+										<div class="media-body">
+											<p><%= item.title %></p>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div>
+										<%= item.description %><br>
+										<%= button_to 'remove', user_item_item_to_cart_path(@user.id, item.id, ItemToCart.where(item_id: item.id, cart_id: @user.carts.last.id).first.id), method: :delete, data: {confirm: "Are you sure ?"}, class: "btn btn-danger", remote: true %>
+									</div>
+								</td>
+								<td>
+									<h5>$<%= item.price %></h5>
+								</td>
+								<!-- <td>
+									<div class="product_count">
+										<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+										<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+										 class="increase items-count" type="button">
+											<i class="lnr lnr-chevron-up"></i>
+										</button>
+										<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+										 class="reduced items-count" type="button">
+											<i class="lnr lnr-chevron-down"></i>
+										</button>
+									</div>
+								</td> -->
+								<td>
+									<%= ItemToCart.where(cart_id: @user.carts.last.id, item_id: item.id).length %>
+								</td>
+								<td>
+									<h5>$<%= item.price * ItemToCart.where(cart_id: @user.carts.last.id, item_id: item.id).length %></h5>
+								</td>
+							</tr>
+							<% end %>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Cart Area =================-->
+
+	<a id="transaction_info" class="gray_btn">
+			Détails de la livraison
+	</a><br>
+
+	<div class="collapse" id="info" style="text-align: center; display: inline-block;">
+		<% unless @amount == 0 %>
+			<center class="checkout_btn_inner">
+				<%= render 'order/new', user: current_user %>			
+			</center>
+		<% else %>
+			<div class="checkout_btn_inner">
+				<h5>Your cats will apears here</h5>
+			</div>
+		<% end %>
+		
+		<h5>Number of cat image : <%= @cart.items.length %></h5>
 	</div>
-<% end %>
+
+	<% @itemToCartS.each do |itemToCart| %>
+		<input type="hidden" name="itemToCart" id="<%= itemToCart.id %>">
+	<% end %>

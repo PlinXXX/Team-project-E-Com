@@ -1,90 +1,88 @@
 <header class="header_area">
-		<div class="top_menu row m0">
-			<div class="container-fluid">
-				<div class="float-right">
-					<ul class="right_side">
-							<% unless user_signed_in? %>
-						<li>
-								<a href="/users/sign_in">Log in</a>
-						</li>
-						<li>
+	<div class="top_menu row m0">
+		<div class="container-fluid">
+			<div class="float-right">
+				<ul class="right_side">
+					<% unless user_signed_in? %>
+					<li>
+						<a href="/users/sign_in">Log in</a>
+					</li>
+					<li>
 
-								<a href="/users/sign_up">Sign up</a>
-						</li>
-							<% else %>
+						<a href="/users/sign_up">Sign up</a>
+					</li>
+					<% else %>
 
-						<li>
+					<li>
 
-								<a href="/users/sign_out" class="m-link" data-method="DELETE">Log out</a>
-						</li>
-						<li>
-							<a href="/users/<%= current_user.id %>">
-								Mon compte
-							</a>
-						</li>
-						<li>
-							<a href="contact.html">
-								Contactez nous
-							</a>
-						</li>
-							<% end %>
-					</ul>
-				</div>
+						<a href="/users/sign_out" class="m-link" data-method="DELETE">Log out</a>
+					</li>
+					<li>
+						<a href="/users/<%= current_user.id %>">
+							Mon compte
+						</a>
+					</li>
+					<li>
+						<a href="/presentation/team">
+							Contactez nous
+						</a>
+					</li>
+					<% end %>
+				</ul>
 			</div>
 		</div>
-		<div class="main_menu">
-			<nav class="navbar navbar-expand-lg navbar-light">
-				<div class="container-fluid">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="index.html">
-						<img src="img/logo.png" alt="">
-					</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-					 aria-expanded="false" aria-label="Toggle navigation">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-						<div class="row w-100">
-							<div class="col-lg-7 pr-0">
-								<ul class="nav navbar-nav center_nav pull-right">
-									<li class="nav-item active">
-										<a class="nav-link" href="/">Acceuil</a>
-									</li>
-									<li class="nav-item submenu dropdown">
-										<a href="category.html" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Magasin</a>
-									</li>
-										<% unless user_signed_in? %>
-									<li class="nav-item submenu dropdown">
-										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nos pages</a>
-										<ul class="dropdown-menu">
-											<li class="nav-item">
-												<a class="nav-link" href="/users/sign_in">Connexion</a>
-												<li class="nav-item">
-													<a class="nav-link" href="/users/sign_up">Inscription</a>
+	</div>
+	<div class="main_menu">
+		<nav class="navbar navbar-expand-lg navbar-light">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<a class="navbar-brand logo_h" href="/presentation/team">
+					<img src="/logo.png" class="img_logo" alt="logo">
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+				<div class="row w-100">
+					<div class="col-lg-7 pr-0">
+						<ul class="nav navbar-nav center_nav pull-right">
+							<li class="nav-item active">
+								<a class="nav-link" href="/">Acceuil</a>
+							</li>
+							
+							<% unless user_signed_in? %>
+							<li class="nav-item submenu dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nos pages</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item">
+										<a class="nav-link" href="/users/sign_in">Connexion</a>
+										<li class="nav-item">
+											<a class="nav-link" href="/users/sign_up">Inscription</a>
 											
 										</ul>
 									</li>
-										<% end %>
+									<% end %>
 									<li class="nav-item">
-										<a class="nav-link" href="/home/contact">Nos Contacts</a>
+										<a class="nav-link" href="/presentation/team">Team</a>
 									</li>
 								</ul>
 							</div>
 
 							<div class="col-lg-5">
 								<ul class="nav navbar-nav navbar-right right_nav pull-right">
-									<% if user_signed_in? %>
+
 									<li class="nav-item">
-										<%if current_user.avatar.attached?%>
+										<%if current_user && current_user.avatar.attached?%>
 										<a href="/users/<%= current_user.id %>/edit">
-										  	<%= image_tag current_user.avatar, alt: 'avatar', width: "auto", height: "60px", style: "border-radius: 50%; margin: 10px;"%>
+											<%= image_tag current_user.avatar, alt: 'avatar', width: "70px", height: "60px", style: "border-radius: 50%; margin-top: 10px;" %>
 										</a>  
-										<% else %>
-										<a href="/users/<%= current_user.id %>/edit">
-											<i class="fa fa-user" aria-hidden="true"></i>
+										<%elsif current_user %>
+										<a href="/users/<%= current_user.id %>/edit" class="icons">
+											<i class="fa fa-user" aria-hidden="true"></i> <!-- Si le client est connecté alors mettre son nom  -->
 										</a>
 										<%end%>
 									</li>
@@ -98,9 +96,10 @@
 									</li>
 
 									<hr>
+									<% if user_signed_in? %>
 									<li class="nav-item">
 										<a href="/users/<%= current_user.id %>/carts/<%= current_user.carts.last.id %>" class="icons">
-											<i class="lnr lnr lnr-cart"></i> <!-- ne pas afficher que si l'utilisateur est connecté -->
+											<i class="fa fa-shopping-cart" aria-hidden="true"></i> <!-- ne pas afficher que si l'utilisateur est connecté -->
 										</a>
 									</li>
 									<% end %>
@@ -114,4 +113,3 @@
 			</nav>
 		</div>
 	</header>
-	<br><br><br><br><br><br><br>

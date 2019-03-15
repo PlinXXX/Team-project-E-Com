@@ -2,9 +2,11 @@ RailsAdmin.config do |config|
 
   ### Popular gems integration
   config.authorize_with do
-    unless current_user.try(:admin?)
+    unless current_user.is_admin
        flash[:error] = "You are not authorize to access this page!"
       redirect_to main_app.root_path
+    else
+      flash[:success] = "Welcome admin!"
     end
   end
   ## == Devise ==

@@ -1,7 +1,12 @@
 
 <!--================Home Banner Area =================-->
-<section class="home_banner_area">
-	<div class="overlay"></div>
+
+<% if user_signed_in? %>
+	<input type="hidden" class="current_user_id" id="<%= current_user.id %>"></input>
+<% end %>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div class="carousel-inner">
+	<div class="home_banner_area one_slider carousel-item active">
 	<div class="banner_inner d-flex align-items-center">
 		<div class="container">
 			<div class="banner_content row">
@@ -13,7 +18,36 @@
 			</div>
 		</div>
 	</div>
-</section>	
+</div>
+<div class="home_banner_area two_slider carousel-item">
+	<div class="banner_inner d-flex align-items-center">
+		<div class="container">
+			<div class="banner_content row">
+				<div class="offset-lg-2 col-lg-8">
+					<h3>Nos Chatons </h3>
+					<p>Que vous ayez un chaton mignon ou un chien de chasse fidèle, nous savons à quel point vos animaux de compagnie sont importants pour vous et votre famille.</p>
+					<a class="white_bg_btn" href="#product_picture">Plus de chaton</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="home_banner_area carousel-item three_slider">
+	<div class="banner_inner d-flex align-items-center">
+		<div class="container">
+			<div class="banner_content row">
+				<div class="offset-lg-2 col-lg-8">
+					<h3>Nos Chatons </h3>
+					<p>Que vous ayez un chaton mignon ou un chien de chasse fidèle, nous savons à quel point vos animaux de compagnie sont importants pour vous et votre famille.</p>
+					<a class="white_bg_btn" href="#product_picture">Plus de chaton</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+</div>
 
 <section class="feature_product_area section_gap" id="product_picture">
 	<div class="main_box">
@@ -26,33 +60,37 @@
 			</div>
 
 
-			<div class="row">
+			<div class="product_kitten">
 				<% @items.each do |item| %>
-				<div class="col col1">
+				<div class="img_kitten">
 					<div class="f_p_item">
 						<div class="f_p_img">
-							<%= image_tag item.image_url %><br>
+							<div class="f_p_img img_resize">
+							<%= image_tag item.image_url, :class => "img_resize", id: "#{item.id}"%><br>
 							<!--================ seul un user peut voir le boutton ajouter au pannier ================-->
 							<% if user_signed_in? %>
 							<div class="p_icon">
 								<a href="#">
-									<i class="lnr lnr-heart"></i>
+									<i class="fa fa-heart-o"></i>
 								</a>
-								<a href="/users/<%= current_user.id %>/items/<%= item.id %>/item_to_carts" data-method="POST">
-									<i class="lnr lnr-cart">Add</i>
+								<a href="/users/<%= current_user.id %>/items/<%= item.id %>/item_to_carts" data-method="POST" data-remote="true">
+									<i class="fa fa-plus-circle" aria-hidden="true"></i>
 								</a>
 							</div>
 							<% else%>
 
 							<div class="p_icon">
 								<a href="#">
-									<i class="lnr lnr-heart"></i>
+									<i class="fa fa-heart-o"></i>
 								</a>
 							</div>
 							<% end %>
+							</div>
 							
 						</div>
 					</div>
+
+					<div class="description_kitten">
 					<% if user_signed_in? %>
 					<a href="/users/<%= current_user.id %>/items/<%= item.id %>">
 					<% end %>
@@ -65,7 +103,7 @@
 		</div>
 
 
-		<div class="row">
+		<!-- <div class="row">
 			<nav class="cat_page mx-auto" aria-label="Page navigation example">
 				<ul class="pagination">
 					<li class="page-item">
@@ -95,7 +133,7 @@
 					</li>
 				</ul>
 			</nav>
-		</div>
+		</div> -->
 	</div>
 </div>
 </section>

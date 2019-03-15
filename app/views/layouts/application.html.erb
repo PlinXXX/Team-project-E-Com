@@ -1,44 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ECommerce</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    <%= render 'layouts/head' %>
   </head>
 
   <body>
 
     <%= render 'layouts/header' %>
   
-    <div class="container">
-
       <%= yield %>
-
-    </div>
 
     <%= render 'layouts/footer' %>    
     <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/stellar.js"></script>
-  <script src="vendors/lightbox/simpleLightbox.min.js"></script>
-  <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
-  <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
-  <script src="vendors/isotope/isotope-min.js"></script>
-  <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="js/jquery.ajaxchimp.min.js"></script>
-  <script src="vendors/counter-up/jquery.waypoints.min.js"></script>
-  <script src="vendors/flipclock/timer.js"></script>
-  <script src="vendors/counter-up/jquery.counterup.js"></script>
-  <script src="js/mail-script.js"></script>
-  <script src="js/theme.js"></script>
+  
   </body>
+
 </html>

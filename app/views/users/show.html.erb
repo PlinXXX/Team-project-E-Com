@@ -1,3 +1,4 @@
+<br><br><br><br><br><br><br>
 <p id="notice"><%= notice %></p>
 
 <% unless @user.orders.length == 0 %>
@@ -20,7 +21,7 @@
 											<%end%>
                     </div>
                     <div class="author-card-details">
-                        <h5 class="author-card-name text-lg"><%= @user.first_name %></h5><span class="author-card-position">Joined <%= @user.created_at %></span>
+                        <h5 class="author-card-name text-lg"><%= @user.first_name %> <%= @user.last_name %></h5><span class="author-card-position">Joined <%= @user.created_at %></span>
                     </div>
                 </div>
             </div>
@@ -55,7 +56,7 @@
                     	<%  
                     		@total = 0
                     		@user.orders.each do |order|
-                    			order.items.each do |item|	
+                    			order.cart.items.each do |item|	
                     				@total += item.price
                     			end
                     		end
@@ -64,7 +65,7 @@
                     		<tr>
                     			<td><a class="navi-link" href="#order-details" data-toggle="modal"><%= order.stripe_customer_id %></a></td>
                     			<td><%= order.created_at %></td>
-                    			<td><span class="badge badge-danger m-0"><%= order.status %></span></td>
+                    			<td><span class="badge badge-success m-0"><%= 'Done' if order.status %></span></td>
                     			<td><span>$<%= @total %></span></td>
                     		</tr>
                     	<% end %>

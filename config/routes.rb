@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   	end
     resources :order
   end
+
+  resources :confirmation, only: [:update]
   
   get '/presentation/team'
 	root 'home#index'

@@ -35,6 +35,7 @@
        Vos achats : <br>
       <% @order.cart.items.each do |item| %>
          <%= item.title %> <br>
+         <%= item.image_url %><br><br>
       <% end %>
      </div>
      

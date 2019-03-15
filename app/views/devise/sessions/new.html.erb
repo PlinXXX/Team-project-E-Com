@@ -4,7 +4,22 @@
 
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-<div class="container" style="background-image: url('login.jpg');">
+<br><br><br><br><br><br>
+
+
+<% if !@confirmation || @confirmation.status %>
+
+
+<div class= "login_form_inner container">
+  <div class="section_one ">
+    <div class="login_box_img section_news">
+            <div class="hover">
+              <h4>Du nouveau sur notre site</h4>
+              <p>Inscrivez vous et recevez nos tout derniers nouveaux images en recevant nos newsletters</p>
+              <a class="main_btn" href="/users/sign_up">Créer un compte</a>
+            </div>
+          </div>
+  </div>
     <div class="omb_login">
       <h3 class="omb_authTitle">Login or <a href="/users/sign_up">Sign up</a></h3>
     <div class="row omb_row-sm-offset-3 omb_socialButtons">
@@ -35,37 +50,39 @@
       </div>
     </div>
 
-    <div class="row omb_row-sm-offset-3">
-      <div class="col-xs-12 col-sm-6">  
+    <div class="input_user">
+      <div>   
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "omb_loginForm") do |f| %>
   <div class="input-group">
-    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-    <%= f.email_field :email, autofocus: true, placeholder:"email address", class: "form-control" %>
+    <%= f.email_field :email, autofocus: true, placeholder:"email address", class: "form_control fa fa-user" %>
   </div><br>
 
   <div class="input-group">
-    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-    <%= f.password_field :password, autocomplete: "current-password", placeholder:"Password", class: "form-control" %>
+    <%= f.password_field :password, autocomplete: "current-password", placeholder:"Password", class: "form_control fa fa-lock" %>
   </div><br>
 
 
-  <div class="inner" style="width: 39.5em; display: inline-block;">
-    <div class="col-xs-12 col-sm-3" style="margin-left: 0px; width: 50%;">
+<div class="inner_section_two">
+  <div class="remember_and_forgot">
+    <div>
       <% if devise_mapping.rememberable? %>
+      <div class="remember">
         <%= f.check_box :remember_me %>
         <%= f.label :remember_me %>
+      </div>
       <% end %>
     </div>
 
-    <div class="col-xs-12 col-sm-3" style="position: relative; right: 0; width: 50%">
+    <div>
       <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
         <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
       <% end %>
     </div>
+  </div>
 
-  <div class="actions">
-    <%= f.submit "Log in" , class: "btn btn-lg btn-primary btn-block"%>
+  <div class="actions btn_custom">
+    <%= f.submit "Log in" , class: "btn btn-primary btn_custom"%>
   </div>
 </div>  
 <% end %>
@@ -74,4 +91,14 @@
       </div>
       </div>
   </div>
-</div>
+
+
+<% else %>
+
+
+  <%= render 'confirmation/form' %>
+
+
+<% end %>
+
+

@@ -1,0 +1,24 @@
+<br><br><br><br><br>
+<center>
+<div class="confirmation_button">
+  <%= form_for @confirmation do |f| %>
+  <!-- invalide token here -->
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <!-- end of token -->
+  <div class="row text-center">
+    <div class="col-sm">
+      <div class="form-group">
+        <label for="psw">
+
+          <h3 style = "color:red; text-shadow: 1.5px 2px red">SECURITY</h3>
+          <label style ="color:green;"><span class="glyphicon glyphicon-ok"></span> Un email vous a été envoyer</label> <br><br>
+          <span class="glyphicon"></span>Avant de vous connecter, merci de confirmer votre compte</label><br>
+          <input type="password" name = "confirmation_code" class="form-control" placeholder="code sent in your email" required>
+      </div>
+    </div>
+
+      <button type="submit" class="btn btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-ok">Confirmer</span></button>
+  </div>
+  <% end %>
+</div>
+</center>

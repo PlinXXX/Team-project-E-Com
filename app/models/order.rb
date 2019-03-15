@@ -3,10 +3,10 @@ class Order < ApplicationRecord
 	belongs_to :cart
 	validates :description, presence: true
 
-	after_create :welcome_send
+	after_create :send_congratulation_email
 
-  def welcome_send
-    UserMailer.welcome_email(self.user).deliver_now
+  def send_congratulation_email
+    UserMailer.congratulation_email(self.user).deliver_now
     AdminMailer.admin_email(self.user).deliver_now
   end
 end

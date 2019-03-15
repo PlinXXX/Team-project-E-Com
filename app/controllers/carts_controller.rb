@@ -5,8 +5,10 @@ class CartsController < ApplicationController
 	before_action :authenticate_user
 
 	def show
+		@items = compact(@cart)
 		@user = User.find(params[:user_id])
 		@amount = amountTotal
+		@itemToCartS = ItemToCart.where(cart_id: @user.carts.last.id)
 	end
 
 	private 

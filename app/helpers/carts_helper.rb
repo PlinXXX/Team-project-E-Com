@@ -5,4 +5,12 @@ module CartsHelper
 			redirect_to '/'
 		end
 	end
+
+	def compact(cart)
+		newcart = []
+		cart.items.each do |item|
+			newcart << item unless newcart.include?(item)
+		end
+		newcart
+	end
 end
