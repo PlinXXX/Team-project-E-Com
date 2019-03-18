@@ -11,9 +11,9 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
 //= require jquery3
 //= require activestorage
-//= require turbolinks
 //= require_tree .
 
 function toggleResetPswd(e){

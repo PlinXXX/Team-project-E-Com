@@ -9,35 +9,41 @@
 <div class= "login_form_inner container">
   <div class="section_one ">
     <div class="login_box_img section_news">
-            <div class="hover">
-              <h4>Du nouveau sur notre site</h4>
-              <p>Inscrivez vous et recevez nos tout derniers nouveaux images en recevant nos newsletters</p>
-              <a class="main_btn" href="/users/sign_up">Créer un compte</a>
-            </div>
-          </div>
+      <div class="hover">
+        <h4>What's news in our site ?</h4>
+        <p>Sign up and receive our new kitty pictures by subscribing our newsletters</p>
+
+        <a class="main_btn" href="/users/sign_up">Create an account</a>
+      </div>
+    </div>
   </div>
+
     <div class="omb_login">
       <h3 class="omb_authTitle">Login or <a href="/users/sign_up">Sign up</a></h3>
-    <div class="row omb_row-sm-offset-3 omb_socialButtons">
+      <div class="row omb_row-sm-offset-3 omb_socialButtons">
+
           <div class="col-xs-4 col-sm-2">
             <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
               <i class="fa fa-facebook visible-xs"></i>
               <span class="hidden-xs">Facebook</span>
             </a>
           </div>
+
           <div class="col-xs-4 col-sm-2">
             <a href="#" class="btn btn-lg btn-block omb_btn-twitter">
               <i class="fa fa-twitter visible-xs"></i>
               <span class="hidden-xs">Twitter</span>
             </a>
           </div>  
+
           <div class="col-xs-4 col-sm-2">
             <a href="#" class="btn btn-lg btn-block omb_btn-google">
               <i class="fa fa-google-plus visible-xs"></i>
               <span class="hidden-xs">Google+</span>
             </a>
-          </div>  
-    </div>
+          </div> 
+
+      </div>
 
     <div class="row omb_row-sm-offset-3 omb_loginOr">
       <div class="col-xs-12 col-sm-6">
@@ -49,7 +55,7 @@
     <div class="input_user">
       <div>   
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "omb_loginForm", remote: true) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "omb_loginForm") do |f| %>
   <div class="input-group">
     <%= f.email_field :email, autofocus: true, placeholder:"email address", class: "form_control fa fa-user" %>
   </div><br>
@@ -59,29 +65,29 @@
   </div><br>
 
 
-<div class="inner_section_two">
-  <div class="remember_and_forgot">
-    <div>
-      <% if devise_mapping.rememberable? %>
-      <div class="remember">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+  <div class="inner_section_two">
+    <div class="remember_and_forgot">
+      <div>
+        <% if devise_mapping.rememberable? %>
+        <div class="remember">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+        <% end %>
       </div>
-      <% end %>
+
+      <div>
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+        <% end %>
+      </div>
     </div>
 
-    <div>
-      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-        <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-      <% end %>
+    <div class="actions btn_custom">
+      <%= f.submit "Log in" , class: "btn btn-primary btn_custom"%>
     </div>
-  </div>
-
-  <div class="actions btn_custom">
-    <%= f.submit "Log in" , class: "btn btn-primary btn_custom"%>
-  </div>
-</div>  
-<% end %>
+  </div>  
+  <% end %>
 
 
       </div>
